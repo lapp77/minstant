@@ -1,0 +1,54 @@
+<!-- Top level template for the chat page -->
+<template name="chat_page">
+    <h2>Type in the box below to send a message!</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-lg chat-well">
+                {{#each messages}}
+                    {{> chat_message_row}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <form class="js-send-chat">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="chat" placeholder="type a message here...">
+                    <div class="input-group-btn dropup">
+                        <button class="btn btn-default">Send</button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{{parseEmoticons "o_o"}}} <span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right emoticons">
+                            {{#each emoticons}}
+                                <li><a href="#" class="js-insert-emoticon" data="{{replacements.[0]}}"><img class="meteoremoticon" src="{{image}}"></a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+
+<!-- simple template that displays a message -->
+<template name="chat_message_row">
+    <div class="row">
+        {{#if isMyUser userId}}
+            <div class="col-sm-8 col-md-6">
+                <div class="alert alert-success">
+                    {{> chat_message}}
+                </div>
+            </div>
+        {{else}}
+            <div class="col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6">
+                <div class="alert alert-info">
+                    {{> chat_message}}
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</template>
+
+<template name="chat_message">
+    <img src="/{{getUserAvatar userId}}" class="avatar_img_sm"> {{{parseEmoticons text}}}
+</template>

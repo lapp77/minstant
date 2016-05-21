@@ -1,0 +1,39 @@
+<!-- Top level template for the lobby page -->
+<template name="lobby_page">
+    {{#if currentUser}}
+        {{> available_user_list}}
+    {{else}}
+        <div class="alert alert-info">Please sign in to view the list of available users.</div>
+    {{/if}}
+</template>
+
+<!-- display a list of users -->
+<template name="available_user_list">
+    <h2>Choose someone to chat with:</h2>
+    <div class="row">
+        {{#each users}}
+            {{> available_user}}
+        {{/each}}
+    </div>
+</template>
+
+<!-- display an individual user -->
+<template name="available_user">
+    <div class="col-md-2">
+        <div class="user_avatar">
+            {{#if isMyUser _id}}
+                <div class="bg-success">
+                    <img src="/{{profile.avatar}}" class="avatar_img">
+                    <br/>
+                    <span>{{getUsername _id}} (YOU)</span>
+                </div>
+            {{else}}
+                <a href="/chat/{{_id}}">
+                    <img src="/{{profile.avatar}}" class="avatar_img">
+                    <br/>
+                    <span>{{getUsername _id}}</span>
+                </a>
+            {{/if}}
+        </div>
+    </div>
+</template>

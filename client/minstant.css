@@ -1,0 +1,33 @@
+/* CSS declarations go here */
+.user_avatar {
+    min-height: 100px;
+    text-align: center;
+}
+
+.avatar_img {
+    height: 75px;
+}
+
+.avatar_img_sm {
+    height: 32px;
+}
+
+.chat-well {
+    min-height: 200px;
+    max-height: 800px;
+    overflow: auto;
+}
+
+img.meteoremoticon {
+    height: 16px;
+}
+
+.alert > img.meteoremoticon {
+    vertical-align: baseline;
+}
+
+ul.emoticons {
+    min-width: 64px;
+    height: 250px;
+    overflow: auto;
+}
